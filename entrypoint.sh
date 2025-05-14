@@ -3,7 +3,7 @@
 # Global variables
 DIR_CONFIG="/etc/v2ray"
 DIR_RUNTIME="/usr/bin"
-DIR_TMP="/opt"
+DIR_TMP="$(mktemp -d)"
 
 # Write V2Ray configuration
 cat << EOF > ${DIR_TMP}/heroku.json
@@ -36,7 +36,7 @@ busybox unzip ${DIR_TMP}/v2ray_dist.zip -d ${DIR_TMP}
 
 # Convert to protobuf format configuration
 mkdir -p ${DIR_CONFIG}
-${DIR_TMP}/v2ray config ${DIR_TMP}/heroku.json > ${DIR_CONFIG}/config.pb
+${DIR_TMP}/v2ctl config ${DIR_TMP}/heroku.json > ${DIR_CONFIG}/config.pb
 
 # Install V2Ray
 install -m 755 ${DIR_TMP}/v2ray ${DIR_RUNTIME}
