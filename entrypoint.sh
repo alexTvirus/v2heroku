@@ -3,7 +3,7 @@
 # Global variables
 DIR_CONFIG="/etc/v2ray"
 DIR_RUNTIME="/usr/bin"
-DIR_TMP="$(mktemp -d)"
+DIR_TMP="/opt"
 
 # Write V2Ray configuration
 cat << EOF > ${DIR_TMP}/heroku.json
